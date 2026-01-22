@@ -1,0 +1,49 @@
+# SPDX-FileCopyrightText: Copyright (c) 1993-2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+# Example configuration for evaluating AdaptivePerHeadPress on benchmarks
+# This config demonstrates how to use adaptive per-head compression
+
+output_dir: "./results"
+
+model: "meta-llama/Meta-Llama-3.1-8B-Instruct"
+dataset: "ruler"                                  # see DATASET_REGISTRY in evaluate_registry.py
+data_dir: "4096"                                  # Subdirectory of the dataset (if applicable) else leave "null"
+
+# Adaptive per-head compression
+# Use "adaptive_" prefix followed by any base press name from PRESS_REGISTRY
+# Examples:
+#   - "adaptive_observed_attention"
+#   - "adaptive_snapkv"
+#   - "adaptive_expected_attention"
+#   - "adaptive_knorm"
+#   - "adaptive_tova"
+press_name: "adaptive_observed_attention"
+
+# Policy checkpoint (REQUIRED for adaptive presses)
+policy_checkpoint: "ckpts/policy/llama-3.1-8b/policy_epoch10.pt"
+
+# Target retention ratio (fraction of tokens to KEEP)
+# This overrides compression_ratio for adaptive presses
+c_target: 0.5                                     # Keep 50% of tokens
+
+# Minimum tokens to keep per head (prevents complete pruning of any head)
+min_tokens_per_head: 1.0
+
+# Note: compression_ratio is ignored for adaptive presses, use c_target instead
+compression_ratio: null                           # Not used for adaptive presses
+key_channel_compression_ratio: null               # Only for ThinKPress
+
+fraction: 1.0                                     # Fraction of dataset to evaluate (0.0 to 1.0)
+max_new_tokens: null                              # Maximum new tokens to generate (null = use dataset default)
+max_context_length: null                          # Maximum context length (null = use model maximum)
+compress_questions: false                         # Whether to compress questions with context
+needle_depth: null                                # Only for needle_in_haystack dataset
+
+device: null  # Device to use (null = auto-detect, "cuda:0", "cpu", etc.)
+
+# Model-specific parameters
+model_kwargs:
+  attn_implementation: null  # Will be auto-set to "eager" if using ObservedAttentionPress
+  dtype: "auto"
+

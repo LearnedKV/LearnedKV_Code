@@ -1,0 +1,73 @@
+============================================
+Qwen3-8B LongBench Parallel Evaluation
+============================================
+Model: Qwen/Qwen3-8B
+Dataset: longbench
+Methods: tova expected_attention streaming_llm knorm qfilter
+Compression Ratios: 0.1 0.2 0.3 0.5
+GPUs: 1 2 4 5 6
+Start Time: Sat Dec 13 05:36:54 PM CST 2025
+============================================
+
+Launching parallel evaluations...
+
+[GPU 1] Starting evaluation for method: tova
+[GPU 1] Log file: ./logs/qwen3_longbench_tova_gpu1_20251213_173654.log
+[GPU 1] Started background job for tova (PID: 549175)
+[GPU 2] Starting evaluation for method: expected_attention
+[GPU 2] Log file: ./logs/qwen3_longbench_expected_attention_gpu2_20251213_173654.log
+[GPU 2] Started background job for expected_attention (PID: 549259)
+[GPU 4] Starting evaluation for method: streaming_llm
+[GPU 4] Log file: ./logs/qwen3_longbench_streaming_llm_gpu4_20251213_173654.log
+[GPU 4] Started background job for streaming_llm (PID: 549404)
+[GPU 5] Starting evaluation for method: knorm
+[GPU 5] Log file: ./logs/qwen3_longbench_knorm_gpu5_20251213_173654.log
+[GPU 5] Started background job for knorm (PID: 549551)
+[GPU 6] Starting evaluation for method: qfilter
+[GPU 6] Log file: ./logs/qwen3_longbench_qfilter_gpu6_20251213_173654.log
+[GPU 6] Started background job for qfilter (PID: 549699)
+
+All jobs launched. Waiting for completion...
+
+
+============================================
+All evaluations completed!
+End Time: Sat Dec 13 05:38:51 PM CST 2025
+============================================
+
+Summary of Results:
+-------------------
+
+Method: tova
+  Ratio 0.1: ✗ (No results found)
+  Ratio 0.2: ✗ (No results found)
+  Ratio 0.3: ✗ (No results found)
+  Ratio 0.5: ✗ (No results found)
+
+Method: expected_attention
+  Ratio 0.1: ✗ (No results found)
+  Ratio 0.2: ✗ (No results found)
+  Ratio 0.3: ✗ (No results found)
+  Ratio 0.5: ✗ (No results found)
+
+Method: streaming_llm
+  Ratio 0.1: ✗ (No results found)
+  Ratio 0.2: ✗ (No results found)
+  Ratio 0.3: ✗ (No results found)
+  Ratio 0.5: ✗ (No results found)
+
+Method: knorm
+  Ratio 0.1: ✗ (No results found)
+  Ratio 0.2: ✗ (No results found)
+  Ratio 0.3: ✗ (No results found)
+  Ratio 0.5: ✗ (No results found)
+
+Method: qfilter
+  Ratio 0.1: ✗ (No results found)
+  Ratio 0.2: ✗ (No results found)
+  Ratio 0.3: ✗ (No results found)
+  Ratio 0.5: ✗ (No results found)
+
+Main log: ./logs/qwen3_longbench_parallel_20251213_173654.log
+Individual logs: ./logs/qwen3_longbench_*_20251213_173654.log
+Results directory: ./results

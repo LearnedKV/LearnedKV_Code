@@ -1,0 +1,85 @@
+==========================================
+Method: tova
+GPU: 1
+Start Time: Sat Dec 13 05:36:54 PM CST 2025
+==========================================
+
+----------------------------------------
+Compression Ratio: 0.1
+----------------------------------------
+/data/anaconda3/lib/python3.12/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+KVzipPress requires multiple forward passes for chunked context reconstruction, resulting in a computational overhead of 2–3 times the initial prefilling cost. This significantly increases the overall prefilling time compared to other compression methods, which is inherent to the KVzip algorithm design.
+2025-12-13 17:37:00,067 - INFO - Set deterministic seeds to 42
+2025-12-13 17:37:00,067 - INFO - Initialized EvaluationRunner with config:
+{
+  "dataset": "longbench",
+  "data_dir": "null",
+  "model": "Qwen/Qwen3-8B",
+  "device": "cuda:0",
+  "press_name": "tova",
+  "compression_ratio": 0.1,
+  "key_channel_compression_ratio": null,
+  "policy_checkpoint": null,
+  "c_target": null,
+  "min_tokens_per_head": 1.0,
+  "fraction": 1.0,
+  "max_new_tokens": null,
+  "max_context_length": null,
+  "compress_questions": false,
+  "needle_depth": null,
+  "compression_interval": null,
+  "target_size": null,
+  "hidden_states_buffer_size": null,
+  "output_dir": "./results",
+  "log_level": "INFO",
+  "model_kwargs": {
+    "attn_implementation": null,
+    "dtype": "auto"
+  },
+  "press_init_command": null,
+  "seed": 42
+}
+2025-12-13 17:37:00,067 - INFO - Starting evaluation run...
+2025-12-13 17:37:00,067 - INFO - Output directory set to: results
+2025-12-13 17:37:00,067 - INFO - Set TOVAPress compression_ratio to 0.1
+2025-12-13 17:37:00,067 - INFO - KV Press 'tova' setup.
+2025-12-13 17:37:00,067 - INFO - Flash Attention 2 detected, setting attn_implementation to 'flash_attention_2'.
+2025-12-13 17:37:00,067 - INFO - Loading model pipeline for: Qwen/Qwen3-8B on device: cuda:0 with model_kwargs: {'attn_implementation': 'flash_attention_2', 'dtype': 'auto'}
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00, 39.98it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 42.86it/s]
+Device set to use cuda:0
+2025-12-13 17:38:16,036 - INFO - Model pipeline loaded.
+2025-12-13 17:38:16,036 - INFO - Loading dataset: Xnhyacinth/LongBench (data_dir: null)
+Using the latest cached version of the dataset since Xnhyacinth/LongBench couldn't be found on the Hugging Face Hub
+Traceback (most recent call last):
+  File "/data/kvpress-main1/evaluation/evaluate.py", line 685, in <module>
+    Fire(CliEntryPoint)
+  File "/data/anaconda3/lib/python3.12/site-packages/fire/core.py", line 143, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/anaconda3/lib/python3.12/site-packages/fire/core.py", line 568, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/data/anaconda3/lib/python3.12/site-packages/fire/core.py", line 693, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/kvpress-main1/evaluation/evaluate.py", line 681, in __call__
+    runner.run_evaluation()
+  File "/data/kvpress-main1/evaluation/evaluate.py", line 631, in run_evaluation
+    self._load_and_prepare_dataset()
+  File "/data/kvpress-main1/evaluation/evaluate.py", line 411, in _load_and_prepare_dataset
+    df = load_dataset(DATASET_REGISTRY[dataset_name], data_dir=data_dir, split="test").to_pandas()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/anaconda3/lib/python3.12/site-packages/datasets/load.py", line 2606, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/anaconda3/lib/python3.12/site-packages/datasets/load.py", line 2314, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+                                       ^^^^^^^^^^^^
+  File "/data/anaconda3/lib/python3.12/site-packages/datasets/packaged_modules/cache/cache.py", line 140, in __init__
+    config_name, version, hash = _find_hash_in_cache(
+                                 ^^^^^^^^^^^^^^^^^^^^
+  File "/data/anaconda3/lib/python3.12/site-packages/datasets/packaged_modules/cache/cache.py", line 65, in _find_hash_in_cache
+    raise ValueError(
+ValueError: Couldn't find cache for Xnhyacinth/LongBench for config 'default-data_dir=null'
+Available configs in the cache: ['2wikimqa', '2wikimqa_e', 'default-531e246ba9fed12a', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
